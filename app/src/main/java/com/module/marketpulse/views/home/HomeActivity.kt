@@ -1,4 +1,4 @@
-package com.module.marketpulse.views
+package com.module.marketpulse.views.home
 
 import android.os.Bundle
 import android.widget.Toast
@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.module.marketpulse.R
 import com.module.marketpulse.databinding.ActivityHomeBinding
-import com.module.marketpulse.views.viewmodel.HomeActivityViewModel
+import com.module.marketpulse.views.home.viewmodel.HomeActivityViewModel
 import dagger.android.AndroidInjection
 import javax.inject.Inject
 

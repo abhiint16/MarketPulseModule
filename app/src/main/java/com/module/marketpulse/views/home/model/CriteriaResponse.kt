@@ -1,4 +1,4 @@
-package com.module.marketpulse.views.model
+package com.module.marketpulse.views.home.model
 
 import android.os.Parcel
 import android.os.Parcelable

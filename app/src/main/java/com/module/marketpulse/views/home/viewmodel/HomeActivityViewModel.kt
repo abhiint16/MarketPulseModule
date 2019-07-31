@@ -1,4 +1,4 @@
-package com.module.marketpulse.views.viewmodel
+package com.module.marketpulse.views.home.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

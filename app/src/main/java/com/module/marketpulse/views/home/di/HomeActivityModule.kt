@@ -1,9 +1,9 @@
-package com.module.marketpulse.views.di
+package com.module.marketpulse.views.home.di
 
 import androidx.lifecycle.ViewModelProvider
 import com.module.marketpulse.datamanager.DataManager
 import com.module.marketpulse.utils.ViewModelProviderFactory
-import com.module.marketpulse.views.viewmodel.HomeActivityViewModel
+import com.module.marketpulse.views.home.viewmodel.HomeActivityViewModel
 import dagger.Module
 import dagger.Provides
 

@@ -1,7 +1,7 @@
 package com.module.marketpulse.di.builder
 
-import com.module.marketpulse.views.HomeActivity
-import com.module.marketpulse.views.di.HomeActivityModule
+import com.module.marketpulse.views.home.HomeActivity
+import com.module.marketpulse.views.home.di.HomeActivityModule
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
