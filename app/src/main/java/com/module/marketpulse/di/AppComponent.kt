@@ -2,6 +2,7 @@ package com.module.marketpulse.di
 
 import android.app.Application
 import com.module.marketpulse.MarketPulseApp
+import com.module.marketpulse.di.builder.ViewBuilderProvider
 import com.module.marketpulse.di.modules.AppModule
 import com.module.marketpulse.di.modules.ContextModule
 import com.module.marketpulse.di.modules.NetworkModule
@@ -13,7 +14,7 @@ import javax.inject.Singleton
 @Singleton
 @Component(
     modules = [AppModule::class, ContextModule::class, NetworkModule::class,
-        AndroidInjectionModule::class]
+        AndroidInjectionModule::class, ViewBuilderProvider::class]
 )
 interface AppComponent {
 
