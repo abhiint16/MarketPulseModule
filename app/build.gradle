@@ -27,22 +27,22 @@ android {
     productFlavors {
         local {
             versionNameSuffix ".local"
-            buildConfigField 'String', 'BASE_URL', '"http://yourdomain.com"'
+            buildConfigField 'String', 'BASE_URL', '"https://mp-android-challenge.herokuapp.com"'
         }
 
         dev {
             versionNameSuffix ".dev"
-            buildConfigField 'String', 'BASE_URL', '"http://yourdomain.com"'
+            buildConfigField 'String', 'BASE_URL', '"https://mp-android-challenge.herokuapp.com"'
         }
 
         staging {
             versionNameSuffix ".stage"
-            buildConfigField 'String', 'BASE_URL', '"https://yourdomain.com"'
+            buildConfigField 'String', 'BASE_URL', '"https://mp-android-challenge.herokuapp.com"'
         }
 
         prod {
             versionNameSuffix ".prod"
-            buildConfigField 'String', 'BASE_URL', '"https://yourdomain.com"'
+            buildConfigField 'String', 'BASE_URL', '"https://mp-android-challenge.herokuapp.com"'
         }
     }
     dataBinding {
