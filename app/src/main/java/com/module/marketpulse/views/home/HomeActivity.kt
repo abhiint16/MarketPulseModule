@@ -24,20 +24,32 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        AndroidInjection.inject(this)
-
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_home)
-
-        homeActivityViewModel = ViewModelProviders.of(this, factory).get(HomeActivityViewModel::class.java)
-
-        homeActivityViewModel.testFun()
-
+        initDagger()
+        initBinding()
+        initViewModel()
         initObserver()
+        setUp()
+    }
+
+    private fun initViewModel() {
+        homeActivityViewModel = ViewModelProviders.of(this, factory).get(HomeActivityViewModel::class.java)
+    }
+
+    private fun initBinding() {
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_home)
+    }
+
+    private fun initDagger() {
+        AndroidInjection.inject(this)
+    }
+
+    private fun setUp() {
+        homeActivityViewModel.getApiData()
     }
 
     private fun initObserver() {
-        homeActivityViewModel.observeForLiveData().observe(this, Observer { boolean ->
-            Toast.makeText(this, "Live Data Observed", Toast.LENGTH_LONG).show()
+        homeActivityViewModel.observeForLiveData().observe(this, Observer { response ->
+
         })
     }
 }
