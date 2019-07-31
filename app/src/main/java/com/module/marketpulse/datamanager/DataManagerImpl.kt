@@ -22,7 +22,7 @@ class DataManagerImpl : DataManager {
     }
 
 
-    override fun getData(): Single<Response<BaseResponse>> {
+    override fun getData(): Single<Response<List<BaseResponse>>> {
        return apiHelper.getData()
     }
 }

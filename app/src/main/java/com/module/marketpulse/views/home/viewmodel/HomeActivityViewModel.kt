@@ -12,7 +12,7 @@ import io.reactivex.schedulers.Schedulers
 class HomeActivityViewModel : ViewModel {
     var dataManager: DataManager
 
-    internal var dataLiveData = MutableLiveData<BaseResponse>()
+    internal var dataLiveData = MutableLiveData<List<BaseResponse>>()
 
     constructor(dataManager: DataManager) : super() {
         this.dataManager = dataManager
@@ -23,13 +23,13 @@ class HomeActivityViewModel : ViewModel {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(Consumer {
-                dataLiveData.value
+                dataLiveData.value = it.body()
             }, Consumer {
 
             })
     }
 
-    fun observeForLiveData(): LiveData<BaseResponse> {
+    fun observeForLiveData(): LiveData<List<BaseResponse>> {
         return dataLiveData
     }
 }

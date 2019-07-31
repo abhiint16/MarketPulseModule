@@ -5,5 +5,5 @@ import io.reactivex.Single
 import retrofit2.Response
 
 interface ApiHelper {
-    fun getData(): Single<Response<BaseResponse>>
+    fun getData(): Single<Response<List<BaseResponse>>>
 }

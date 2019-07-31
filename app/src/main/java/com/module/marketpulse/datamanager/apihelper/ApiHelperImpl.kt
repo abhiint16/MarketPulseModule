@@ -14,7 +14,7 @@ class ApiHelperImpl : ApiHelper {
         this.apiService = apiService
     }
 
-    override fun getData() : Single<Response<BaseResponse>> {
+    override fun getData() : Single<Response<List<BaseResponse>>> {
         return apiService.getData()
     }
 }

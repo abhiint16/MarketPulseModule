@@ -8,6 +8,6 @@ import retrofit2.http.GET
 interface ApiService {
 
     @GET("data")
-    fun getData(): Single<Response<BaseResponse>>
+    fun getData(): Single<Response<List<BaseResponse>>>
 
 }
