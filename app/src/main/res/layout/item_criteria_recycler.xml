@@ -16,6 +16,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@{item.finalSpannableString}"
+                android:textSize="@dimen/dimen_text_16"
                 android:padding="@dimen/dimen_20"
                 android:clickable="true"
                 app:layout_constraintTop_toTopOf="parent"

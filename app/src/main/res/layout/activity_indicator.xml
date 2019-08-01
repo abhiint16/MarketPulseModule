@@ -37,6 +37,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"
+                    android:text="@{item.default_value}"
                     android:textSize="@dimen/dimen_text_14"/>
         </com.google.android.material.textfield.TextInputLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

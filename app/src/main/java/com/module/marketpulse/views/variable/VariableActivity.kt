@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.module.marketpulse.R
@@ -29,6 +30,7 @@ class VariableActivity : AppCompatActivity() {
     lateinit var linearLayoutManager: LinearLayoutManager
 
     lateinit var innerVariableResponse: InnerVariableResponse
+    lateinit var dividerItemDecoration: DividerItemDecoration
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,6 +51,9 @@ class VariableActivity : AppCompatActivity() {
         variableRecyclerAdapter = VariableRecyclerAdapter()
         linearLayoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         binding.homeRecycler.setLayoutManager(linearLayoutManager)
+        dividerItemDecoration =
+            DividerItemDecoration(binding.homeRecycler.getContext(), linearLayoutManager.getOrientation())
+        binding.homeRecycler.addItemDecoration(dividerItemDecoration)
         binding.homeRecycler.setAdapter(variableRecyclerAdapter)
     }
 
