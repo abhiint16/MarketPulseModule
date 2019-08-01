@@ -20,7 +20,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@{item.name}"
-                android:padding="@dimen/dimen_20"
+                android:padding="@dimen/dimen_10"
+                android:textSize="@dimen/dimen_text_16"
+                android:textStyle="bold"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"/>
 
@@ -30,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:text="@{item.tag}"
                 android:textColor="@{item.color.equalsIgnoreCase(`green`)?@color/green:@color/red}"
-                android:padding="@dimen/dimen_20"
+                android:padding="@dimen/dimen_10"
                 app:layout_constraintTop_toBottomOf="@+id/name"
                 app:layout_constraintStart_toStartOf="parent"/>
 

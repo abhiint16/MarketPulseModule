@@ -6,6 +6,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.module.marketpulse.R
@@ -30,6 +31,7 @@ class CriteriaActivity : AppCompatActivity() {
 
     lateinit var criteriaRecyclerAdapter: CriteriaRecyclerAdapter
     lateinit var linearLayoutManager: LinearLayoutManager
+    lateinit var dividerItemDecoration: DividerItemDecoration
 
     lateinit var baseResponse: BaseResponse
 
@@ -51,8 +53,11 @@ class CriteriaActivity : AppCompatActivity() {
     private fun initRecyclerView() {
         criteriaRecyclerAdapter = CriteriaRecyclerAdapter()
         linearLayoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
-        binding.homeRecycler.setLayoutManager(linearLayoutManager)
-        binding.homeRecycler.setAdapter(criteriaRecyclerAdapter)
+        binding.criteriaRecycler.setLayoutManager(linearLayoutManager)
+        dividerItemDecoration =
+            DividerItemDecoration(binding.criteriaRecycler.getContext(), linearLayoutManager.getOrientation())
+        binding.criteriaRecycler.addItemDecoration(dividerItemDecoration)
+        binding.criteriaRecycler.setAdapter(criteriaRecyclerAdapter)
     }
 
     private fun initBinding() {
