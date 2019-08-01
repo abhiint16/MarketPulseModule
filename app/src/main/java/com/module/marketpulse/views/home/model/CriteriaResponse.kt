@@ -3,29 +3,29 @@ package com.module.marketpulse.views.home.model
 import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
-class CriteriaResponse(
+class CriteriaResponse() : Parcelable {
 
     @SerializedName("type")
-    var type: String?,
+    lateinit var type: String
 
     @SerializedName("text")
-    var text: String?,
+    lateinit var text: String
 
     @SerializedName("variable")
-    var variable: VariableResponse?
-) : Parcelable {
+    lateinit var variable: Map<String, InnerVariableResponse>
 
-    constructor(parcel: Parcel) : this(
-        parcel.readString(),
-        parcel.readString(),
-        parcel.readParcelable(VariableResponse::class.java.classLoader)
-    )
+    constructor(parcel: Parcel) : this() {
+        parcel.readString()
+        parcel.readString()
+        parcel.readMap(variable, InnerVariableResponse::class.java.getClassLoader())
+    }
+
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(type)
         parcel.writeString(text)
-        parcel.writeParcelable(variable, flags)
     }
 
     override fun describeContents(): Int {

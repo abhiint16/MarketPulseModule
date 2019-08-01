@@ -3,13 +3,14 @@ package com.module.marketpulse.views.home.model
 import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 class InnerVariableResponse(
     @SerializedName("type")
     var type: String?,
 
     @SerializedName("values")
-    var values: IntArray?,
+    var values: FloatArray?,
 
     @SerializedName("study_type")
     var study_type: String?,
@@ -26,21 +27,19 @@ class InnerVariableResponse(
     @SerializedName("default_value")
     var default_value: String?
 ) : Parcelable {
-
-
     constructor(parcel: Parcel) : this(
         parcel.readString(),
-        parcel.createIntArray(),
+        parcel.createFloatArray(),
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
         parcel.readString()
-    )
+    ) {
+    }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(type)
-        parcel.writeList(values as List<*>?)
         parcel.writeString(study_type)
         parcel.writeString(parameter_name)
         parcel.writeString(min_value)

@@ -26,7 +26,7 @@ class HomeActivityViewModel : ViewModel {
             .subscribe(Consumer {
                 dataLiveData.value = it.body()
             }, Consumer {
-
+                it.printStackTrace()
             })
     }
 
