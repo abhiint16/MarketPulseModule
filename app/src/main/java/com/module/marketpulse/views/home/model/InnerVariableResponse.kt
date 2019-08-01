@@ -40,6 +40,7 @@ class InnerVariableResponse(
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(type)
+        parcel.writeFloatArray(values)
         parcel.writeString(study_type)
         parcel.writeString(parameter_name)
         parcel.writeString(min_value)

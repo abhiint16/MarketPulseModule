@@ -8,17 +8,19 @@ import java.io.Serializable
 class CriteriaResponse() : Parcelable {
 
     @SerializedName("type")
-    lateinit var type: String
+    var type: String? = null
 
     @SerializedName("text")
-    lateinit var text: String
+    var text: String? = null
 
     @SerializedName("variable")
-    lateinit var variable: Map<String, InnerVariableResponse>
+    var variable: Map<String, InnerVariableResponse> = HashMap()
+
+    lateinit var finalString: String
 
     constructor(parcel: Parcel) : this() {
-        parcel.readString()
-        parcel.readString()
+        type = parcel.readString()
+        text = parcel.readString()
         parcel.readMap(variable, InnerVariableResponse::class.java.getClassLoader())
     }
 
@@ -26,6 +28,7 @@ class CriteriaResponse() : Parcelable {
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(type)
         parcel.writeString(text)
+        parcel.writeMap(variable)
     }
 
     override fun describeContents(): Int {

@@ -64,7 +64,7 @@ class CriteriaActivity : AppCompatActivity() {
     }
 
     private fun setUp() {
-        baseResponse = intent.getParcelableExtra(ViewCons.IntentCons.BASEDATA)
+        baseResponse = intent.getParcelableExtra(ViewCons.IntentCons.BASEDATA)!!
         criteriaViewModel.ifIntentDataReady(baseResponse)
     }
 

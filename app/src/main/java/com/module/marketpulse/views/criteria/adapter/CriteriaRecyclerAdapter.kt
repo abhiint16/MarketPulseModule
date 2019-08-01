@@ -6,6 +6,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.module.marketpulse.R
 import com.module.marketpulse.databinding.ItemCriteriaRecyclerBinding
+import com.module.marketpulse.views.criteria.TypeValues
 import com.module.marketpulse.views.home.model.CriteriaResponse
 
 class CriteriaRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -28,7 +29,24 @@ class CriteriaRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() 
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val criteriaResponse = criteriaResponseList.get(position)
-        (holder as ViewHolder).bind(criteriaResponse)
+        criteriaResponse.finalString = criteriaResponse.text.toString()
+        if (TypeValues.TypeVariableString.PLAINTEXT.equals(criteriaResponse.type)) {
+            (holder as ViewHolder).bind(criteriaResponse)
+        } else {
+            for (item in criteriaResponse.variable) {
+                if (criteriaResponse.text!!.contains(item.key)) {
+                    if (TypeValues.TypeValueString.VALUE.equals(item.value.type)) {
+                        criteriaResponse.finalString =
+                            criteriaResponse.finalString.replace(item.key, item.value.values!![0].toString(), true)
+                    } else {
+                        criteriaResponse.finalString =
+                            criteriaResponse.finalString.replace(item.key, item.value.default_value.toString(), true)
+                    }
+                }
+            }
+            (holder as ViewHolder).bind(criteriaResponse)
+        }
+
     }
 
     override fun getItemCount(): Int {
