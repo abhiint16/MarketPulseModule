@@ -44,13 +44,14 @@ class CriteriaRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val criteriaResponse = criteriaResponseList.get(position)
         criteriaResponse.finalString = criteriaResponse.text.toString()
-        val spannableString = SpannableString(criteriaResponse.finalString)
 
         var startList: MutableList<Int> = ArrayList()
         var endList: MutableList<Int> = ArrayList()
         var clickableSpanList: MutableList<ClickableSpan> = ArrayList()
 
         if (TypeValues.TypeVariableString.PLAINTEXT.equals(criteriaResponse.type)) {
+            val spannableString = SpannableString(criteriaResponse.finalString)
+            criteriaResponse.finalSpannableString = spannableString
             (holder as ViewHolder).bind(criteriaResponse)
         } else {
 
