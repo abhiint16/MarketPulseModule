@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MarketPulse</string>
+    <string name="enter_rsi_text">Enter RSI</string>
 </resources>

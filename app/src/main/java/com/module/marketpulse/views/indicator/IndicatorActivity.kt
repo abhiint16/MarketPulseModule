@@ -36,6 +36,7 @@ class IndicatorActivity : AppCompatActivity() {
 
     private fun setUp() {
         innerVariableResponse = intent.getParcelableExtra(ViewCons.IntentCons.VALUEDATA)!!
+        binding.item = innerVariableResponse
     }
 
     private fun initObserver() {

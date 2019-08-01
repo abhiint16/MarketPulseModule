@@ -16,6 +16,7 @@ class VariableRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() 
 
     fun addData(floatArray: FloatArray) {
         this.floatArray = floatArray
+        floatArray.sort()
         notifyDataSetChanged()
     }
 

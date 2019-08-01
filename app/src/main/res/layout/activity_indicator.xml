@@ -21,13 +21,12 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
 
-
         <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/rsiField"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Enter RSI"
+                android:hint="@string/enter_rsi_text"
                 android:layout_margin="@dimen/dimen_10"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
