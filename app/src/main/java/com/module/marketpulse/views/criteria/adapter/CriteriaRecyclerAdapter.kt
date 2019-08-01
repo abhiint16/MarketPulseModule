@@ -12,10 +12,15 @@ import android.text.SpannableString
 import android.text.Spanned
 import android.text.TextPaint
 import android.content.Intent
+import android.graphics.Color
+import android.text.method.LinkMovementMethod
 import androidx.core.content.ContextCompat.startActivity
 import android.view.View
 import android.text.style.ClickableSpan
 import android.widget.Toast
+import com.module.marketpulse.views.ViewCons
+import com.module.marketpulse.views.indicator.IndicatorActivity
+import com.module.marketpulse.views.variable.VariableActivity
 
 
 class CriteriaRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -73,7 +78,15 @@ class CriteriaRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() 
 
                 val clickableSpan = object : ClickableSpan() {
                     override fun onClick(textView: View) {
-                        Toast.makeText(holder.itemView.context, "haha", Toast.LENGTH_SHORT).show()
+                        if (TypeValues.TypeValueString.VALUE.equals(item.value.type)) {
+                            var intent = Intent(holder.itemView.context, VariableActivity::class.java)
+                            intent.putExtra(ViewCons.IntentCons.VALUEDATA, item.value)
+                            holder.itemView.context.startActivity(intent)
+                        } else {
+                            var intent = Intent(holder.itemView.context, IndicatorActivity::class.java)
+                            intent.putExtra(ViewCons.IntentCons.VALUEDATA, item.value)
+                            holder.itemView.context.startActivity(intent)
+                        }
                     }
 
                     override fun updateDrawState(ds: TextPaint) {
@@ -114,6 +127,9 @@ class CriteriaRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() 
 
         fun bind(criteriaResponse: CriteriaResponse) {
             binding.item = criteriaResponse
+            binding.text.setMovementMethod(LinkMovementMethod.getInstance());
+            binding.text.setHighlightColor(Color.BLUE);
+
         }
     }
 

@@ -19,5 +19,11 @@
         </activity>
         <activity android:name=".views.criteria.CriteriaActivity"
                   android:screenOrientation="portrait"/>
+
+        <activity android:name=".views.variable.VariableActivity"
+                  android:screenOrientation="portrait"/>
+
+        <activity android:name=".views.indicator.IndicatorActivity"
+                  android:screenOrientation="portrait"/>
     </application>
 </manifest>

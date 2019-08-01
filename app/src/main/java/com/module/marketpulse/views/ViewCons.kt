@@ -4,5 +4,6 @@ object ViewCons {
 
     object IntentCons {
         var BASEDATA = "baseData"
+        var VALUEDATA = "valueData"
     }
 }
