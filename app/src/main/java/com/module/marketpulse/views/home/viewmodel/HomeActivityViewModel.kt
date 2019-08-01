@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.module.marketpulse.datamanager.DataManager
 import com.module.marketpulse.views.home.model.BaseResponse
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.functions.Consumer
+import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
 class HomeActivityViewModel : ViewModel {
@@ -15,17 +15,19 @@ class HomeActivityViewModel : ViewModel {
     internal var dataLiveData = MutableLiveData<List<BaseResponse>>()
     internal var itemClickLiveData = MutableLiveData<BaseResponse>()
 
+    lateinit var disposable: Disposable
+
     constructor(dataManager: DataManager) : super() {
         this.dataManager = dataManager
     }
 
     fun getApiData() {
-        dataManager.getData()
+        disposable = dataManager.getData()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(Consumer {
+            .subscribe({
                 dataLiveData.value = it.body()
-            }, Consumer {
+            }, {
                 it.printStackTrace()
             })
     }
@@ -40,6 +42,11 @@ class HomeActivityViewModel : ViewModel {
 
     fun observeForItemClickLiveData(): LiveData<BaseResponse> {
         return itemClickLiveData
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        disposable.dispose()
     }
 
 }

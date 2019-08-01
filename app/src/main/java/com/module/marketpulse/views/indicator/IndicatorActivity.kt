@@ -40,6 +40,6 @@ class IndicatorActivity : AppCompatActivity() {
     }
 
     private fun initObserver() {
-
+        // do nothing
     }
 }

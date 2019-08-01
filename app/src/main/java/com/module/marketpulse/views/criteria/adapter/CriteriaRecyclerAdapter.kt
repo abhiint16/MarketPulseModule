@@ -14,10 +14,8 @@ import android.text.TextPaint
 import android.content.Intent
 import android.graphics.Color
 import android.text.method.LinkMovementMethod
-import androidx.core.content.ContextCompat.startActivity
 import android.view.View
 import android.text.style.ClickableSpan
-import android.widget.Toast
 import com.module.marketpulse.views.ViewCons
 import com.module.marketpulse.views.indicator.IndicatorActivity
 import com.module.marketpulse.views.variable.VariableActivity
@@ -42,12 +40,12 @@ class CriteriaRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() 
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val criteriaResponse = criteriaResponseList.get(position)
+        val criteriaResponse = criteriaResponseList[position]
         criteriaResponse.finalString = criteriaResponse.text.toString()
 
-        var startList: MutableList<Int> = ArrayList()
-        var endList: MutableList<Int> = ArrayList()
-        var clickableSpanList: MutableList<ClickableSpan> = ArrayList()
+        val startList: MutableList<Int> = ArrayList()
+        val endList: MutableList<Int> = ArrayList()
+        val clickableSpanList: MutableList<ClickableSpan> = ArrayList()
 
         if (TypeValues.TypeVariableString.PLAINTEXT.equals(criteriaResponse.type)) {
             val spannableString = SpannableString(criteriaResponse.finalString)
@@ -57,20 +55,20 @@ class CriteriaRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() 
 
             for (item in criteriaResponse.variable) {
 
-                if (criteriaResponse.finalString!!.contains(item.key)) {
+                if (criteriaResponse.finalString.contains(item.key)) {
                     if (TypeValues.TypeValueString.VALUE.equals(item.value.type)) {
 
-                        startList.add(criteriaResponse.finalString!!.indexOf(item.key))
+                        startList.add(criteriaResponse.finalString.indexOf(item.key))
                         val count = item.value.values!![0].toString().length
-                        endList.add(criteriaResponse.finalString!!.indexOf(item.key) + count)
+                        endList.add(criteriaResponse.finalString.indexOf(item.key) + count)
 
                         criteriaResponse.finalString =
                             criteriaResponse.finalString.replace(item.key, item.value.values!![0].toString(), true)
                     } else {
 
-                        startList.add(criteriaResponse.finalString!!.indexOf(item.key))
+                        startList.add(criteriaResponse.finalString.indexOf(item.key))
                         val count = item.value.default_value.toString().length
-                        endList.add(criteriaResponse.finalString!!.indexOf(item.key) + count)
+                        endList.add(criteriaResponse.finalString.indexOf(item.key) + count)
 
                         criteriaResponse.finalString =
                             criteriaResponse.finalString.replace(item.key, item.value.default_value.toString(), true)
@@ -80,11 +78,11 @@ class CriteriaRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() 
                 val clickableSpan = object : ClickableSpan() {
                     override fun onClick(textView: View) {
                         if (TypeValues.TypeValueString.VALUE.equals(item.value.type)) {
-                            var intent = Intent(holder.itemView.context, VariableActivity::class.java)
+                            val intent = Intent(holder.itemView.context, VariableActivity::class.java)
                             intent.putExtra(ViewCons.IntentCons.VALUEDATA, item.value)
                             holder.itemView.context.startActivity(intent)
                         } else {
-                            var intent = Intent(holder.itemView.context, IndicatorActivity::class.java)
+                            val intent = Intent(holder.itemView.context, IndicatorActivity::class.java)
                             intent.putExtra(ViewCons.IntentCons.VALUEDATA, item.value)
                             holder.itemView.context.startActivity(intent)
                         }
@@ -113,10 +111,10 @@ class CriteriaRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() 
     }
 
     override fun getItemCount(): Int {
-        if (criteriaResponseList.size == 0)
-            return 0
+        return if (criteriaResponseList.size == 0)
+            0
         else
-            return criteriaResponseList.size
+            criteriaResponseList.size
     }
 
     class ViewHolder : RecyclerView.ViewHolder {
@@ -128,8 +126,8 @@ class CriteriaRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() 
 
         fun bind(criteriaResponse: CriteriaResponse) {
             binding.item = criteriaResponse
-            binding.text.setMovementMethod(LinkMovementMethod.getInstance());
-            binding.text.setHighlightColor(Color.BLUE);
+            binding.text.movementMethod = LinkMovementMethod.getInstance()
+            binding.text.highlightColor = Color.BLUE
 
         }
     }
