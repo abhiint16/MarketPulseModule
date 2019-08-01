@@ -1,5 +1,6 @@
 package com.module.marketpulse.views.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.module.marketpulse.R
 import com.module.marketpulse.databinding.ActivityHomeBinding
+import com.module.marketpulse.views.ViewCons
+import com.module.marketpulse.views.criteria.CriteriaActivity
 import com.module.marketpulse.views.home.adapter.HomeRecyclerAdapter
 import com.module.marketpulse.views.home.model.BaseResponse
 import com.module.marketpulse.views.home.viewmodel.HomeActivityViewModel
@@ -49,6 +52,7 @@ class HomeActivity : AppCompatActivity() {
         linearLayoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         binding.homeRecycler.setLayoutManager(linearLayoutManager)
         binding.homeRecycler.setAdapter(mainRecyclerAdapter)
+        mainRecyclerAdapter.setViewModel(homeActivityViewModel)
     }
 
     private fun initBinding() {
@@ -66,6 +70,12 @@ class HomeActivity : AppCompatActivity() {
     private fun initObserver() {
         homeActivityViewModel.observeForLiveData().observe(this, Observer { response ->
             mainRecyclerAdapter.addData(response as ArrayList<BaseResponse>)
+        })
+
+        homeActivityViewModel.observeForItemClickLiveData().observe(this, Observer { baseData ->
+            var intent = Intent(this@HomeActivity, CriteriaActivity::class.java)
+            intent.putExtra(ViewCons.IntentCons.BASEDATA, baseData)
+            startActivity(intent)
         })
     }
 }

@@ -13,6 +13,7 @@ class HomeActivityViewModel : ViewModel {
     var dataManager: DataManager
 
     internal var dataLiveData = MutableLiveData<List<BaseResponse>>()
+    internal var itemClickLiveData = MutableLiveData<BaseResponse>()
 
     constructor(dataManager: DataManager) : super() {
         this.dataManager = dataManager
@@ -29,7 +30,16 @@ class HomeActivityViewModel : ViewModel {
             })
     }
 
+    fun recyclerItemClick(baseResponse: BaseResponse) {
+        itemClickLiveData.value = baseResponse
+    }
+
     fun observeForLiveData(): LiveData<List<BaseResponse>> {
         return dataLiveData
     }
+
+    fun observeForItemClickLiveData(): LiveData<BaseResponse> {
+        return itemClickLiveData
+    }
+
 }

@@ -9,9 +9,13 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.module.marketpulse.R
+import com.module.marketpulse.databinding.ActivityCriteriaBinding
 import com.module.marketpulse.databinding.ActivityHomeBinding
+import com.module.marketpulse.views.ViewCons
 import com.module.marketpulse.views.criteria.adapter.CriteriaRecyclerAdapter
 import com.module.marketpulse.views.criteria.viewmodel.CriteriaViewModel
+import com.module.marketpulse.views.home.model.BaseResponse
+import com.module.marketpulse.views.home.model.CriteriaResponse
 import dagger.android.AndroidInjection
 import javax.inject.Inject
 
@@ -22,10 +26,12 @@ class CriteriaActivity : AppCompatActivity() {
 
     lateinit var criteriaViewModel: CriteriaViewModel
 
-    lateinit var binding: ActivityHomeBinding
+    lateinit var binding: ActivityCriteriaBinding
 
     lateinit var criteriaRecyclerAdapter: CriteriaRecyclerAdapter
     lateinit var linearLayoutManager: LinearLayoutManager
+
+    lateinit var baseResponse: BaseResponse
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,7 +56,7 @@ class CriteriaActivity : AppCompatActivity() {
     }
 
     private fun initBinding() {
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_home)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_criteria)
     }
 
     private fun initDagger() {
@@ -58,12 +64,14 @@ class CriteriaActivity : AppCompatActivity() {
     }
 
     private fun setUp() {
-
+        baseResponse = intent.getParcelableExtra<BaseResponse>(ViewCons.IntentCons.BASEDATA)
+        criteriaViewModel.ifIntentDataReady(baseResponse)
     }
 
     private fun initObserver() {
         criteriaViewModel.observeForLiveData().observe(this, Observer { response ->
-
+            binding.item = baseResponse
+            criteriaRecyclerAdapter.addData(response.criteria as ArrayList<CriteriaResponse>)
         })
     }
 }

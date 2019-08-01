@@ -7,13 +7,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.module.marketpulse.R
 import com.module.marketpulse.databinding.ItemHomeRecyclerBinding
 import com.module.marketpulse.views.home.model.BaseResponse
+import com.module.marketpulse.views.home.viewmodel.HomeActivityViewModel
 
 class HomeRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var baseResponseList = ArrayList<BaseResponse>()
+    lateinit var homeActivityViewModel: HomeActivityViewModel
 
     fun addData(baseResponseList: ArrayList<BaseResponse>) {
         this.baseResponseList = baseResponseList
         notifyDataSetChanged()
+    }
+
+    fun setViewModel(homeActivityViewModel: HomeActivityViewModel) {
+        this.homeActivityViewModel = homeActivityViewModel
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -28,7 +34,7 @@ class HomeRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val baseResponse = baseResponseList.get(position)
-        (holder as ViewHolder).bind(baseResponse)
+        (holder as ViewHolder).bind(baseResponse, homeActivityViewModel)
     }
 
     override fun getItemCount(): Int {
@@ -45,8 +51,9 @@ class HomeRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             this.binding = itemView
         }
 
-        fun bind(baseResponse: BaseResponse) {
+        fun bind(baseResponse: BaseResponse, homeActivityViewModel: HomeActivityViewModel) {
             binding.item = baseResponse
+            binding.viewmodel = homeActivityViewModel
         }
     }
 

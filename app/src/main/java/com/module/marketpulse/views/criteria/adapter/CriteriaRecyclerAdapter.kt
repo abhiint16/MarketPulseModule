@@ -5,21 +5,21 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.module.marketpulse.R
-import com.module.marketpulse.databinding.ItemHomeRecyclerBinding
-import com.module.marketpulse.views.home.model.BaseResponse
+import com.module.marketpulse.databinding.ItemCriteriaRecyclerBinding
+import com.module.marketpulse.views.home.model.CriteriaResponse
 
 class CriteriaRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    private var baseResponseList = ArrayList<BaseResponse>()
+    private var criteriaResponseList = ArrayList<CriteriaResponse>()
 
-    fun addData(baseResponseList: ArrayList<BaseResponse>) {
-        this.baseResponseList = baseResponseList
+    fun addData(criteriaResponseList: ArrayList<CriteriaResponse>) {
+        this.criteriaResponseList = criteriaResponseList
         notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val binding: ItemHomeRecyclerBinding = DataBindingUtil.inflate(
+        val binding: ItemCriteriaRecyclerBinding = DataBindingUtil.inflate(
             LayoutInflater.from(parent.context),
-            R.layout.item_home_recycler,
+            R.layout.item_criteria_recycler,
             parent,
             false
         )
@@ -27,26 +27,26 @@ class CriteriaRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() 
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val baseResponse = baseResponseList.get(position)
-        (holder as ViewHolder).bind(baseResponse)
+        val criteriaResponse = criteriaResponseList.get(position)
+        (holder as ViewHolder).bind(criteriaResponse)
     }
 
     override fun getItemCount(): Int {
-        if (baseResponseList.size == 0)
+        if (criteriaResponseList.size == 0)
             return 0
         else
-            return baseResponseList.size
+            return criteriaResponseList.size
     }
 
     class ViewHolder : RecyclerView.ViewHolder {
-        var binding: ItemHomeRecyclerBinding
+        var binding: ItemCriteriaRecyclerBinding
 
-        constructor(itemView: ItemHomeRecyclerBinding) : super(itemView.getRoot()) {
+        constructor(itemView: ItemCriteriaRecyclerBinding) : super(itemView.getRoot()) {
             this.binding = itemView
         }
 
-        fun bind(baseResponse: BaseResponse) {
-            binding.item = baseResponse
+        fun bind(criteriaResponse: CriteriaResponse) {
+            binding.item = criteriaResponse
         }
     }
 

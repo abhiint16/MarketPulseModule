@@ -4,17 +4,22 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.module.marketpulse.datamanager.DataManager
+import com.module.marketpulse.views.home.model.BaseResponse
 
 class CriteriaViewModel : ViewModel {
     var dataManager: DataManager
 
-    internal var dataLiveData = MutableLiveData<Boolean>()
+    internal var dataLiveData = MutableLiveData<BaseResponse>()
 
     constructor(dataManager: DataManager) : super() {
         this.dataManager = dataManager
     }
 
-    fun observeForLiveData(): LiveData<Boolean> {
+    fun ifIntentDataReady(baseResponse: BaseResponse) {
+        dataLiveData.value = baseResponse
+    }
+
+    fun observeForLiveData(): LiveData<BaseResponse> {
         return dataLiveData
     }
 }
