@@ -15,8 +15,9 @@
                 android:id="@+id/text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{item.finalString}"
+                android:text="@{item.finalSpannableString}"
                 android:padding="@dimen/dimen_20"
+                android:clickable="true"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"/>
 

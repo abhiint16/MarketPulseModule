@@ -2,6 +2,7 @@ package com.module.marketpulse.views.home.model
 
 import android.os.Parcel
 import android.os.Parcelable
+import android.text.SpannableString
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
@@ -17,6 +18,8 @@ class CriteriaResponse() : Parcelable {
     var variable: Map<String, InnerVariableResponse> = HashMap()
 
     lateinit var finalString: String
+
+    lateinit var finalSpannableString: SpannableString
 
     constructor(parcel: Parcel) : this() {
         type = parcel.readString()
